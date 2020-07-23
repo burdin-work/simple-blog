@@ -1,33 +1,31 @@
-import {connect, ConnectedProps, useDispatch} from 'react-redux';
+import { connect, ConnectedProps, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import {Global, Header, HomeLink, Post, PostImg, PostText, PostTitle} from '../../styles';
-import React from "react";
-import {fetchCurrentPost} from "../../store/actions/postAction";
-import {AppStateType} from "../../store/reducers";
-// @ts-ignore
-import { NextFunctionComponent, NextContext } from 'next'
+import { Global, Header, HomeLink, Post, PostImg, PostText, PostTitle } from '../../styles';
+import React from 'react';
+import { fetchCurrentPost } from '../../store/actions/postAction';
+import { AppStateType } from '../../store/reducers';
+import { NextPage, NextPageContext } from 'next';
 
 const mapState = (state: AppStateType) => {
     return {
         posts: state.posts,
-        currentPost: state.posts.currentPost
+        currentPost: state.posts.currentPost,
     };
 };
 
-const connector = connect(mapState, {})
-type PropsFromRedux = ConnectedProps<typeof connector>
+const connector = connect(mapState, {});
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type urlSlug = {
-        slug: string
-}
+    slug: string;
+};
 
 type Props = PropsFromRedux & {
-    query: urlSlug
-}
+    query: urlSlug;
+};
 
-
-const OpenedPost: NextFunctionComponent = (props: Props) => {
-    let id = props.query.slug;
+const OpenedPost: NextPage = (props: Props) => {
+    const id = props.query.slug;
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -40,7 +38,9 @@ const OpenedPost: NextFunctionComponent = (props: Props) => {
             {post && (
                 <Global>
                     <Header>
-                    <HomeLink href='/'><h1>Simple Blog</h1></HomeLink>
+                        <HomeLink href="/">
+                            <h1>Simple Blog</h1>
+                        </HomeLink>
                     </Header>
                     <Post>
                         <div>
@@ -57,10 +57,8 @@ const OpenedPost: NextFunctionComponent = (props: Props) => {
     );
 };
 
-OpenedPost.getInitialProps = ({ query } : NextContext)  => {
+OpenedPost.getInitialProps = ({ query }: NextPageContext) => {
     return { query };
 };
-
-
 
 export default connector(OpenedPost);

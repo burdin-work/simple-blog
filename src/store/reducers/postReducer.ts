@@ -1,17 +1,16 @@
 import * as types from '../types';
-import {ActionsTypes, ReceivedPostType, ReceivedRequestType} from "../actions/postAction";
+import { ActionsTypes, ReceivedPostType } from '../actions/postAction';
 
 type InitialStateType = {
-    posts: Array<ReceivedPostType> | null,
-    currentPost: ReceivedPostType | null,
+    posts: Array<ReceivedPostType> | null;
+    currentPost: ReceivedPostType | null;
     newPost: {
-        title: string,
-        body: string,
-    },
-    newBodyText: string,
-    newPostTitle: string,
-}
-
+        title: string;
+        body: string;
+    };
+    newBodyText: string;
+    newPostTitle: string;
+};
 
 const initialState: InitialStateType = {
     posts: null,
@@ -24,11 +23,8 @@ const initialState: InitialStateType = {
     newPostTitle: '',
 };
 
-export const postReducer = (state = initialState, action: ActionsTypes):
-    InitialStateType => {
-
+export const postReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-
         case types.GET_POSTS:
             return {
                 ...state,

@@ -1,23 +1,22 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { WrapPosts, PostPrev, PostTitle, PostText } from '../styles';
 import Link from 'next/link';
-import {ReceivedPostsType} from "../store/types";
-import {connect, ConnectedProps, useDispatch, useSelector} from "react-redux";
-import {fetchPosts} from "../store/actions/postAction";
-import {AppStateType} from "../store/reducers";
+import { ReceivedPostsType } from '../store/types';
+import { connect, ConnectedProps, useDispatch, useSelector } from 'react-redux';
+import { fetchPosts } from '../store/actions/postAction';
+import { AppStateType } from '../store/reducers';
 
 const mapState = (state: AppStateType) => ({
-    ...state
+    ...state,
 });
 
-const connector = connect(mapState, {})
-type PropsFromRedux = ConnectedProps<typeof connector>
+const connector = connect(mapState, {});
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const Posts: React.FC<PropsFromRedux> = (props) => {
-
+const Posts: React.FC<PropsFromRedux> = () => {
     const dispatch = useDispatch();
-    const { posts } = useSelector((state: any) => {
-        return state.posts
+    const { posts } = useSelector((state: AppStateType) => {
+        return state.posts;
     });
 
     useEffect(() => {

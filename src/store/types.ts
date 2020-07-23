@@ -6,9 +6,8 @@ export type ReceivedPostsType = {
 };
 
 export type ReceivedRequestType = {
-    posts: Array<ReceivedPostsType> | null
-}
-
+    posts: Array<ReceivedPostsType> | null;
+};
 
 export const GET_POSTS = 'GET_POSTS';
 export const GET_CURRENT_POST = 'GET_CURRENT_POST';

@@ -1,7 +1,7 @@
 import { Button_CreatePost, Global, Header, Main } from '../styles';
-import Posts from "../components/Posts";
+import Posts from '../components/Posts';
 
-const Home = () => (
+const Home: React.FunctionComponent = () => (
     <Global>
         <Header>
             <title>Simple Blog</title>

@@ -83,11 +83,10 @@ export const PostImg = styled.img`
 export const FormWrap = styled.div`
     margin: 0 auto;
     max-width: 65%;
-    background-color: rgba(205,219,219,0.22);
+    background-color: rgba(205, 219, 219, 0.22);
     padding: 0.5rem 0;
-    box-shadow: inset 0px 0px 3px rgba(0,0,0,0.9);
+    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.9);
     border-radius: 5px;
-  
 `;
 
 export const Input = styled.input`
