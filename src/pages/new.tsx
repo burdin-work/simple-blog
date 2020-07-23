@@ -1,5 +1,5 @@
 import {connect, ConnectedProps} from 'react-redux';
-import { Button, Form, FormWrap, Global, Header, Input, Textarea } from '../styles';
+import {Button, Form, FormWrap, Global, Header, HomeLink, Input, Textarea} from '../styles';
 import { addNewPost, updateNewPostText, updateNewPostTitle } from '../store/actions/postAction';
 import Link from "next/link";
 import {AppStateType} from "../store/reducers";
@@ -43,7 +43,7 @@ const NewPost: React.FC<Props> = (props) => {
     return (
         <Global>
             <Header>
-                <h1>Simple Blog</h1>
+                <HomeLink href="/"><h1>Simple Blog</h1></HomeLink>
             </Header>
             <FormWrap>
                 <Input type="text" placeholder="title" onChange={onTitleChange} value={props.newPostTitle} />

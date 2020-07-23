@@ -55,11 +55,13 @@ export const PostPrev = styled.div`
     margin: 2rem;
     display: block;
     cursor: pointer;
+    overflow: hidden;
 `;
 
 export const Post = styled(PostPrev)`
     width: 800px;
     height: 100%;
+    margin: 0 auto;
     min-height: 800px;
     cursor: initial;
 `;
@@ -80,11 +82,13 @@ export const PostImg = styled.img`
 
 export const FormWrap = styled.div`
     margin: 0 auto;
-    max-width: 50%;
-    background-color: rgba(7, 186, 35, 0.94);
+    max-width: 65%;
+    background-color: rgba(205,219,219,0.22);
     padding: 0.5rem 0;
+    box-shadow: inset 0px 0px 3px rgba(0,0,0,0.9);
+    border-radius: 5px;
+  
 `;
-export const Form = styled.div``;
 
 export const Input = styled.input`
     margin: 1rem 2rem;
@@ -95,7 +99,7 @@ export const Textarea = styled.textarea`
     margin: 1rem 2rem;
     width: 75%;
     resize: none;
-    min-height: 250px;
+    min-height: 400px;
 `;
 
 export const Button = styled.button`
