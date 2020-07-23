@@ -1,24 +1,18 @@
-import PostsContainer from "../containers/PostsContainer";
-import {Button_CreatePost, Global, Header, Main} from "../styles";
+import { Button_CreatePost, Global, Header, Main } from '../styles';
+import Posts from "../components/Posts";
 
-const Home = () =>  (
-        <Global>
-            <Header>
-                <title>Simple Blog</title>
-                <Button_CreatePost href="/new">Add New Post</Button_CreatePost>
-            </Header>
+const Home = () => (
+    <Global>
+        <Header>
+            <title>Simple Blog</title>
+            <Button_CreatePost href="/new">Add New Post</Button_CreatePost>
+        </Header>
 
-            <Main>
-                <h1 className="title">
-                    Simple Blog
-                </h1>
-                <PostsContainer/>
-            </Main>
-
-            <footer>
-                All rights reserved
-            </footer>
-        </Global>
-)
+        <Main>
+            <h1 className="title">Simple Blog</h1>
+            <Posts />
+        </Main>
+    </Global>
+);
 
 export default Home;
