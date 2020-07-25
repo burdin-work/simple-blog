@@ -115,3 +115,9 @@ export const Button = styled.button`
     text-decoration: none;
     padding: 0.25em 0.5em;
 `;
+
+export const PreloaderWrap = styled.div`
+    text-align: center;
+    height: 300px;
+    padding: 150px;
+`;

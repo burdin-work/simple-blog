@@ -3,12 +3,6 @@ import { PostDataType, ReceivedPostType, ReceivedRequestType } from '../store/ac
 import qs from 'qs';
 
 //types
-
-type APIDataType = {
-    title: string;
-    body: string;
-};
-
 type APIRequestType = {
     data: string | number;
     method: 'POST';
@@ -19,12 +13,11 @@ type APIRequestType = {
 // api
 export const profilesApi = {
     getPosts() {
-        debugger;
-        return axios.get<ReceivedRequestType>('https://simple-blog-api.crew.red/posts').then((res) => res.data);
+        return axios.get<ReceivedRequestType>('https://simple-blog-api.crew.red/posts');
     },
 
     getCurrentPost(id: string) {
-        return axios.get<ReceivedPostType>('https://simple-blog-api.crew.red/posts/' + id).then((res) => res.data);
+        return axios.get<ReceivedPostType>('https://simple-blog-api.crew.red/posts/' + id);
     },
 
     addNewPost(data: PostDataType): void {

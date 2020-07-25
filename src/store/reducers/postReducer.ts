@@ -10,6 +10,7 @@ type InitialStateType = {
     };
     newBodyText: string;
     newPostTitle: string;
+    isFetching: boolean;
 };
 
 const initialState: InitialStateType = {
@@ -21,6 +22,7 @@ const initialState: InitialStateType = {
     },
     newBodyText: '',
     newPostTitle: '',
+    isFetching: false,
 };
 
 export const postReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -37,12 +39,6 @@ export const postReducer = (state = initialState, action: ActionsTypes): Initial
                 currentPost: action.payload,
             };
 
-        /*case types.ADD_NEW_POST:
-            return {
-                ...state,
-                newPost: action.payload,
-            };*/
-
         case types.UPDATE_NEW_POST_BODY:
             return {
                 ...state,
@@ -52,6 +48,11 @@ export const postReducer = (state = initialState, action: ActionsTypes): Initial
             return {
                 ...state,
                 newPostTitle: action.newPostTitle,
+            };
+        case types.TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching,
             };
 
         default:

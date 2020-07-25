@@ -10,6 +10,7 @@ const mapState = (state: AppStateType) => {
     return {
         posts: state.posts,
         currentPost: state.posts.currentPost,
+        isFetching: state.posts.isFetchig,
     };
 };
 
@@ -33,6 +34,7 @@ const OpenedPost: NextPage = (props: Props) => {
     }, []);
 
     const post = props.currentPost;
+
     return (
         <>
             {post && (

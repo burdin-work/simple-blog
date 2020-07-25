@@ -5,6 +5,7 @@ import { ReceivedPostsType } from '../store/types';
 import { connect, ConnectedProps, useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../store/actions/postAction';
 import { AppStateType } from '../store/reducers';
+import Preloader from '../common/Preloader';
 
 const mapState = (state: AppStateType) => ({
     ...state,
@@ -13,7 +14,7 @@ const mapState = (state: AppStateType) => ({
 const connector = connect(mapState, {});
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const Posts: React.FC<PropsFromRedux> = () => {
+const Posts: React.FC<PropsFromRedux> = (props) => {
     const dispatch = useDispatch();
     const { posts } = useSelector((state: AppStateType) => {
         return state.posts;
@@ -22,6 +23,10 @@ const Posts: React.FC<PropsFromRedux> = () => {
     useEffect(() => {
         dispatch(fetchPosts());
     }, []);
+
+    if (props.posts.isFetching) {
+        return <Preloader />;
+    }
 
     return (
         <WrapPosts>

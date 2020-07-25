@@ -1,4 +1,4 @@
-import { GET_CURRENT_POST, GET_POSTS, UPDATE_NEW_POST_BODY, UPDATE_NEW_POST_TITLE } from '../types';
+import { GET_CURRENT_POST, GET_POSTS, UPDATE_NEW_POST_BODY, UPDATE_NEW_POST_TITLE, TOGGLE_IS_FETCHING } from '../types';
 import { Dispatch } from 'redux';
 import { profilesApi } from '../../api/api';
 
@@ -19,6 +19,12 @@ export type ActionsTypes = updateNewPostTextType | updateNewPostTitleType | setP
 
 // actions
 //for sync
+type toggleIsFetchingType = {
+    type: typeof TOGGLE_IS_FETCHING;
+    payload: ReceivedRequestType;
+};
+export const toggleIsFetching: toggleIsFetchingType = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
+
 type updateNewPostTextType = {
     type: typeof UPDATE_NEW_POST_BODY;
     newBodyText: string;
@@ -59,13 +65,19 @@ const setCurrentPost = (currentPost: ReceivedPostType): setCurrentPostType => ({
 // thunks
 type fetchCurrentPostType = (id: string) => (dispatch: Dispatch<ActionsTypes>) => void;
 export const fetchCurrentPost: fetchCurrentPostType = (id) => async (dispatch) => {
-    const currentPost = await profilesApi.getCurrentPost(id);
+    const currentPost = await profilesApi.getCurrentPost(id).then((res) => {
+        return res.data;
+    });
     dispatch(setCurrentPost(currentPost));
 };
 
 type fetchPostsPostType = () => (dispatch: Dispatch<ActionsTypes>) => void;
 export const fetchPosts: fetchPostsPostType = () => async (dispatch) => {
-    const resPosts = await profilesApi.getPosts();
+    dispatch(toggleIsFetching(true));
+    const resPosts = await profilesApi.getPosts().then((res) => {
+        dispatch(toggleIsFetching(false));
+        return res.data;
+    });
     dispatch(setPosts(resPosts));
 };
 
